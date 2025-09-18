@@ -6,7 +6,10 @@
     <title>Khóa Học Của Tôi</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/courses.css">
-    
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"></script>
+<script src="../js/lesson.js"></script>
 
 
 </head>
@@ -53,15 +56,35 @@
 <div id="vocabProgress" class="progress-bar-container">
   <div class="progress-bar" style="width: 10%;"></div>
 </div>
-<button id="vocabBtn">Học ngay</button>
-                </div>
+
             </div>
             <!-- Add more course cards here -->
-        </div>
+                  
+                <div class="card-content">
+<p>Thêm bài học</p>
+<div id="pronProgress" class="progress-bar-container">
+  <div class="progress-bar" style="width: 30%;"></div>
+</div>
+<button id="pronBtn">Thêm ngay</button>
+        
     </main>
 
     <!-- Linking the specific JavaScript file -->
     <script src="../js/courses.js"></script>
+<script>
+  function goToLesson(lessonName) {
+    // Giả sử đã có thông tin học sinh (lấy từ Firebase Auth hoặc database)
+    const studentId = localStorage.getItem("studentId");
+    const studentName = localStorage.getItem("studentName");
+
+    // Gửi dữ liệu qua URL
+    window.location.href = `lsmanage.html?lesson=${lessonName}&id=${studentId}&name=${studentName}`;
+  }
+
+  document.getElementById("grammarBtn").addEventListener("click", () => goToLesson("Ngữ pháp"));
+  document.getElementById("pronBtn").addEventListener("click", () => goToLesson("Phát âm"));
+  document.getElementById("vocabBtn").addEventListener("click", () => goToLesson("Từ vựng"));
+</script>
 
 </body>
 </html>

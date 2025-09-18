@@ -64,7 +64,7 @@ async function deleteStudent(docId) {
 async function loadStudents() {
   const querySnapshot = await getDocs(studentsCol);
   const tableBody = document.querySelector("#studentsTable tbody");
-  tableBody.innerHTML = "";
+ 
   querySnapshot.forEach((docSnap) => {
     const data = docSnap.data();
     tableBody.innerHTML += `

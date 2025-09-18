@@ -1,3 +1,11 @@
+
+
+const firebaseConfig = { /* giữ nguyên config của bạn */ };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
 firebase.auth().onAuthStateChanged(user => {
     // Lấy các phần tử DOM cho trang tài khoản
     const userEmailSpan = document.getElementById('user-email');

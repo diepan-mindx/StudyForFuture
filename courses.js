@@ -1,8 +1,3 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import {
-  getFirestore, doc, getDoc, updateDoc
-} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 
 const firebaseConfig = { /* giữ nguyên config của bạn */ };
 
@@ -48,6 +43,4 @@ async function updateLesson(lessonKey, progressBarId) {
 document.getElementById("grammarBtn").addEventListener("click", () => updateLesson("grammar", "grammarProgress"));
 document.getElementById("pronBtn").addEventListener("click", () => updateLesson("pronunciation", "pronProgress"));
 document.getElementById("vocabBtn").addEventListener("click", () => updateLesson("vocabulary", "vocabProgress"));
-
-
 
