@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm Bài Học</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <a href="courses.html" class="logo">Quay lại Khóa học</a>
+  </header>
+
+  <main class="content-container">
+    <h1>Thêm Bài Học Mới</h1>
+    <form id="addCourseForm">
+      <label for="title">Tên bài học:</label>
+      <input type="text" id="title" required><br><br>
+
+      <label for="desc">Mô tả:</label>
+      <textarea id="desc" required></textarea><br><br>
+
+      <label for="img">Link hình ảnh:</label>
+      <input type="url" id="img" placeholder="https://..."><br><br>
+
+      <button type="submit">Lưu bài học</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("addCourseForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const desc = document.getElementById("desc").value;
+         const img = document.getElementById("img").value || "https://placehold.co/400x250";
+
+      // Lấy danh sách khóa học cũ trong localStorage
+      let courses = JSON.parse(localStorage.getItem("courses")) || [];
+      courses.push({ title, desc, img});
+
+      // Lưu lại
+      localStorage.setItem("courses", JSON.stringify(courses));
+
+      // Quay lại courses.html
+      window.location.href = "courses.html";
+    });
+  </script>
+</body>
+</html>

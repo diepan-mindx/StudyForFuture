@@ -56,16 +56,18 @@
 <div id="vocabProgress" class="progress-bar-container">
   <div class="progress-bar" style="width: 10%;"></div>
 </div>
-
+<button id="vocabBtn">Học ngay</button>
             </div>
             <!-- Add more course cards here -->
-                  
+
+
                 <div class="card-content">
 <p>Thêm bài học</p>
 <div id="pronProgress" class="progress-bar-container">
   <div class="progress-bar" style="width: 30%;"></div>
 </div>
-<button id="pronBtn">Thêm ngay</button>
+<button id="addCourseBtn">Thêm ngay</button>
+
         
     </main>
 
@@ -89,3 +91,47 @@
 </body>
 </html>
 </html>
+<script>
+
+  document.getElementById("addCourseBtn").addEventListener("click", () => {
+    window.location.href = "add_course.html";
+  });
+
+  // Load thêm các khóa học từ localStorage
+  let courses = JSON.parse(localStorage.getItem("courses")) || [];
+  const courseGrid = document.querySelector(".course-grid");
+
+  function renderCourses() {
+    // Xóa toàn bộ giao diện cũ trước khi render lại
+    document.querySelectorAll(".course-card.dynamic").forEach(el => el.remove());
+
+    courses.forEach((course, index) => {
+      const card = document.createElement("div");
+      card.classList.add("course-card", "dynamic");
+      card.innerHTML = `
+        <img src="${course.img}" alt="${course.title}">
+        <div class="card-content">
+          <h3>${course.title}</h3>
+          <p>${course.desc}</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 0%;"></div>
+          </div>
+          <button onclick="goToLesson('${course.title}')">Học ngay</button>
+          <button onclick="deleteCourse(${index})" style="background:red;color:white;">Xóa</button>
+        </div>
+      `;
+      courseGrid.appendChild(card);
+    });
+  }
+
+  function deleteCourse(index) {
+    if (confirm("Bạn có chắc muốn xóa bài học này không?")) {
+      courses.splice(index, 1);
+      localStorage.setItem("courses", JSON.stringify(courses));
+      renderCourses();
+    }
+  }
+
+  // Render khi load trang
+  renderCourses();
+</script>
