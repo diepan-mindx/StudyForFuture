@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý bài học</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .progress-bar-container { width: 100%; background: #eee; border-radius: 5px; margin: 10px 0; }
+    .progress-bar { height: 20px; background: #4caf50; border-radius: 5px; width: 0%; }
+  </style>
+</head>
+<body>
+  <h2>📖 Giao diện Học Ngay</h2>
+
+  <div id="studentInfo">
+    <p><b>Học sinh:</b> <span id="studentName"></span> (<span id="studentId"></span>)</p>
+    <p><b>Bài học:</b> <span id="lessonName"></span></p>
+    <p><b>Tiến độ:</b> <span id="lessonProgress">0%</span></p>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <button onclick="updateProgress()">✅ Làm thêm bài</button>
+  </div>
+
+  <!-- Firebase -->
+  <script type="module" src="../js/lesson.js"></script>
+  <script>
+    // Lấy dữ liệu từ URL
+    const params = new URLSearchParams(window.location.search);
+    const studentId = params.get("id");
+    const studentName = params.get("name");
+    const lesson = params.get("lesson");
+
+    // Hiển thị thông tin
+    document.getElementById("studentId").textContent = studentId || "Chưa có";
+    document.getElementById("studentName").textContent = studentName || "Chưa có";
+    document.getElementById("lessonName").textContent = lesson;
+
+    // Lấy tiến độ từ Firebase
+    import("../js/firebase_config.js").then(module => {
+      const db = module.db;
+
+      function loadProgress() {
+        db.ref(`students/${studentId}/progress/${lesson}`).get().then(snapshot => {
+          if (snapshot.exists()) {
+            const progress = snapshot.val();
+            document.getElementById("lessonProgress").textContent = progress + "%";
+            document.getElementById("progressBar").style.width = progress + "%";
+          }
+        });
+      }
+
+      // Gọi khi bấm nút cập nhật
+      window.updateProgress = function() {
+        const current = parseInt(document.getElementById("lessonProgress").textContent) || 0;
+        const newProgress = Math.min(current + 10, 100);
+        db.ref(`students/${studentId}/progress/${lesson}`).set(newProgress).then(loadProgress);
+      };
+
+      loadProgress();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Tài Khoản</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/account.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="../index.html" class="logo">Study For Future</a>
+        <nav class="nav">
+            <a href="#">Giới Thiệu</a>
+            <a href="courses.html">Khóa Học</a>
+            <a href="login.html" id="login-link" class="active">Đăng Nhập</a>
+            <a href="account.html" id="account-link" class="hidden">Tài Khoản</a>
+        </nav>
+    </header>
+
+    <main class="account-container">
+        <h1>Thông Tin Tài Khoản</h1>
+        <div id="profile-card" class="profile-card">
+            <img id="user-avatar" src="https://placehold.co/100x100/E9F4FF/007BFF?text=Avatar" alt="User Avatar" class="profile-avatar">
+            <h2 id="user-display-name">Tên Người Dùng</h2>
+            <div class="detail-group">
+                <label>Email:</label>
+                <span id="user-email">user@example.com</span>
+            </div>
+             <div class="detail-group">
+                <label>Mật Khẩu:</label>
+                <span>********</span>
+            </div>
+            <div class="action-buttons">
+            <a href="manage.html">Quản lí học sinh</a>
+            <a href="login.html">Đăng xuất</a>
+
+            </div>
+        </div>
+    </main>
+    
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <!-- Linking our custom authentication logic -->
+    <script src="../js/firebase-auth.js"></script>
+    <script src="../js/account.js"></script>
+    
+</body>
+</html>
