@@ -1,137 +1,117 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khóa Học Của Tôi</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/courses.css">
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js"></script>
-<script src="../js/lesson.js"></script>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khóa Học Của Tôi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50">
 
-    <header class="header">
-        <a href="../index.html" class="logo">Study For Future</a>
-        <nav class="nav">
-            <a href="../index.html">Giới Thiệu</a>
-            <a href="courses.html" class="active">Khóa Học</a>
-            <a href="account.html">Tài Khoản</a>
-        </nav>
-    </header>
+  <header class="header p-4 bg-blue-600 text-white flex justify-between">
+    <a href="../index.html" class="font-bold">Study For Future</a>
+    <nav class="space-x-4">
+      <a href="../index.html">Giới Thiệu</a>
+      <a href="courses.html" class="font-bold underline">Khóa Học</a>
+      <a href="account.html">Tài Khoản</a>
+    </nav>
+  </header>
 
-    <main class="content-container">
-        <h1>Các Khóa Học Tiếng Anh</h1>
-        <div class="course-grid">
-            <div class="course-card">
-                <img src="https://placehold.co/400x250/007BFF/FFFFFF?text=Ngữ+Pháp" alt="Course 1">
-                <div class="card-content">
-<p>Học các cấu trúc câu và thì hiện tại.</p>
-<div id="grammarProgress" class="progress-bar-container">
-  <div class="progress-bar" style="width: 75%;"></div>
-</div>
-<button id="grammarBtn">Học ngay</button>
-                </div>
+  <main class="max-w-4xl mx-auto mt-8 p-6 bg-white shadow-lg rounded-xl">
+    <h2 class="text-3xl font-bold mb-6 text-center">Khóa Học Của Tôi</h2>
+
+    <div id="courseList" class="space-y-6">
+      <!-- Ngữ pháp -->
+      <div class="flex items-center justify-between p-6 border rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-black text-lg font-bold">NG</div>
+          <p class="text-xl font-semibold">Ngữ Pháp</p>
+        </div>
+        <button id="grammarBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Học ngay</button>
+      </div>
+
+      <!-- Phát âm -->
+      <div class="flex items-center justify-between p-6 border rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-black text-lg font-bold">PA</div>
+          <p class="text-xl font-semibold">Phát Âm</p>
+        </div>
+        <button id="pronBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Học ngay</button>
+      </div>
+
+      <!-- Từ vựng -->
+      <div class="flex items-center justify-between p-6 border rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-black text-lg font-bold">TV</div>
+          <p class="text-xl font-semibold">Từ Vựng</p>
+        </div>
+        <button id="vocabBtn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Học ngay</button>
+      </div>
+
+      <!-- Khóa học phong phú -->
+      <div class="flex items-center justify-between p-6 border rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300">
+        <div class="flex items-center space-x-4">
+          <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-black text-lg font-bold">KH</div>
+          <p class="text-xl font-semibold">Khóa học phong phú</p>
+        </div>
+        <button id="addCourseBtn" class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Thêm ngay</button>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Điều hướng sang trang bài học
+    function goToLesson(lessonName) {
+      const studentId = localStorage.getItem("studentId");
+      const studentName = localStorage.getItem("studentName");
+      window.location.href = `lsmanage.html?lesson=${lessonName}&id=${studentId}&name=${studentName}`;
+    }
+
+    document.getElementById("grammarBtn").addEventListener("click", () => goToLesson("Ngữ pháp"));
+    document.getElementById("pronBtn").addEventListener("click", () => goToLesson("Phát âm"));
+    document.getElementById("vocabBtn").addEventListener("click", () => goToLesson("Từ vựng"));
+    document.getElementById("addCourseBtn").addEventListener("click", () => window.location.href = "add_course.html");
+
+    // Load khóa học thêm từ localStorage
+    let courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+    function renderCourses() {
+      // Xóa các khóa học dynamic cũ
+      document.querySelectorAll(".dynamic-course").forEach(el => el.remove());
+
+      courses.forEach((course, index) => {
+        const div = document.createElement("div");
+        div.className = "flex items-center justify-between p-6 border rounded-xl bg-blue-50 hover:bg-blue-100 transition duration-300 dynamic-course";
+
+        div.innerHTML = `
+          <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 flex items-center justify-center rounded-full bg-blue-100 text-black text-lg font-bold">
+              ${course.title.substring(0,2).toUpperCase()}
             </div>
-            <!-- Course Card 2 -->
-            <div class="course-card">
-                <img src="https://placehold.co/400x250/007BFF/FFFFFF?text=Phát+Âm" alt="Course 2">
-                <div class="card-content">
-<p>Học phát âm chuẩn.</p>
-<div id="pronProgress" class="progress-bar-container">
-  <div class="progress-bar" style="width: 30%;"></div>
-</div>
-<button id="pronBtn">Học ngay</button>
-                </div>
+            <div>
+              <p class="text-xl font-semibold">${course.title}</p>
+              <p class="text-sm text-gray-600">${course.desc}</p>
             </div>
-            <!-- Course Card 3 -->
-            <div class="course-card">
-                <img src="https://placehold.co/400x250/007BFF/FFFFFF?text=Từ+Vựng" alt="Course 3">
-                <div class="card-content">
-                   <p>Học từ vựng thông dụng.</p>
-<div id="vocabProgress" class="progress-bar-container">
-  <div class="progress-bar" style="width: 10%;"></div>
-</div>
-<button id="vocabBtn">Học ngay</button>
-            </div>
-            <!-- Add more course cards here -->
+          </div>
+          <div class="flex space-x-2">
+            <button onclick="goToLesson('${course.title}')" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Học ngay</button>
+            <button onclick="deleteCourse(${index})" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">Xóa</button>
+          </div>
+        `;
 
+        document.getElementById("courseList").appendChild(div);
+      });
+    }
 
-                <div class="card-content">
-<p>Thêm bài học</p>
-<div id="pronProgress" class="progress-bar-container">
-  <div class="progress-bar" style="width: 30%;"></div>
-</div>
-<button id="addCourseBtn">Thêm ngay</button>
+    function deleteCourse(index) {
+      if (confirm("Bạn có chắc muốn xóa bài học này không?")) {
+        courses.splice(index, 1);
+        localStorage.setItem("courses", JSON.stringify(courses));
+        renderCourses();
+      }
+    }
 
-        
-    </main>
-
-    <!-- Linking the specific JavaScript file -->
-    <script src="../js/courses.js"></script>
-<script>
-  function goToLesson(lessonName) {
-    // Giả sử đã có thông tin học sinh (lấy từ Firebase Auth hoặc database)
-    const studentId = localStorage.getItem("studentId");
-    const studentName = localStorage.getItem("studentName");
-
-    // Gửi dữ liệu qua URL
-    window.location.href = `lsmanage.html?lesson=${lessonName}&id=${studentId}&name=${studentName}`;
-  }
-
-  document.getElementById("grammarBtn").addEventListener("click", () => goToLesson("Ngữ pháp"));
-  document.getElementById("pronBtn").addEventListener("click", () => goToLesson("Phát âm"));
-  document.getElementById("vocabBtn").addEventListener("click", () => goToLesson("Từ vựng"));
-</script>
-
+    renderCourses();
+  </script>
 </body>
 </html>
-</html>
-<script>
-
-  document.getElementById("addCourseBtn").addEventListener("click", () => {
-    window.location.href = "add_course.html";
-  });
-
-  // Load thêm các khóa học từ localStorage
-  let courses = JSON.parse(localStorage.getItem("courses")) || [];
-  const courseGrid = document.querySelector(".course-grid");
-
-  function renderCourses() {
-    // Xóa toàn bộ giao diện cũ trước khi render lại
-    document.querySelectorAll(".course-card.dynamic").forEach(el => el.remove());
-
-    courses.forEach((course, index) => {
-      const card = document.createElement("div");
-      card.classList.add("course-card", "dynamic");
-      card.innerHTML = `
-        <img src="${course.img}" alt="${course.title}">
-        <div class="card-content">
-          <h3>${course.title}</h3>
-          <p>${course.desc}</p>
-          <div class="progress-bar-container">
-            <div class="progress-bar" style="width: 0%;"></div>
-          </div>
-          <button onclick="goToLesson('${course.title}')">Học ngay</button>
-          <button onclick="deleteCourse(${index})" style="background:red;color:white;">Xóa</button>
-        </div>
-      `;
-      courseGrid.appendChild(card);
-    });
-  }
-
-  function deleteCourse(index) {
-    if (confirm("Bạn có chắc muốn xóa bài học này không?")) {
-      courses.splice(index, 1);
-      localStorage.setItem("courses", JSON.stringify(courses));
-      renderCourses();
-    }
-  }
-
-  // Render khi load trang
-  renderCourses();
-</script>

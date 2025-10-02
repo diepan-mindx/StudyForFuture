@@ -1,5 +1,12 @@
 
-const firebaseConfig = { /* giữ nguyên config của bạn */ };
+const firebaseConfig = { apiKey: "AIzaSyASEoE6TQkvWK1EtYfcAAdfOD3Guo874Ko",
+  authDomain: "jsi35-d177d.firebaseapp.com",
+  databaseURL: "https://jsi35-d177d-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "jsi35-d177d",
+  storageBucket: "jsi35-d177d.firebasestorage.app",
+  messagingSenderId: "73414069100",
+  appId: "1:73414069100:web:b80dbc1756a4dd46c74149",
+  measurementId: "G-30EVLV5LC2"};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
