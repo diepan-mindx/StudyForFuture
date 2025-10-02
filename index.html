@@ -1,116 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <style>
-    body {
-      font-family: Arial;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f1f1f1;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 300px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-    }
-    .message {
-      margin-top: 10px;
-      color: green;
-    }
-    .error {
-      color: red;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Study For Future</title>
+    <!-- Liên kết Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/css/styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-blue-900 text-white">
 
-  <div class="container">
-    <h2>Login / Signup</h2>
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button onclick="login()">Đăng nhập</button>
-    <button onclick="signup()">Đăng ký</button>
-    <p id="message" class="message"></p>
-  </div>
+    <!-- Tiêu đề và Thanh điều hướng -->
+    <header class="p-6">
+        <nav class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://placehold.co/60x60/E0E7FF/000000?text=SFF" alt="SFF Logo" class="rounded-full">
+                <div>
+                    <div class="text-lg font-bold">STUDY FOR FUTURE</div>
+                    <div class="text-sm">Học Tiếng Anh cho tương lai</div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Nav Links -->
+                <a href="../pages/courses.html" class="nav-link">Khóa Học</a>
+                <a href="../pages/account.html" id="account-link" class="nav-link hidden">Tài Khoản</a>
+                <a href="../pages/login.html" id="login-link" class="nav-link">Đăng Nhập</a>
+            </div>
+        </nav>
+    </header>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { 
-      getAuth, 
-      createUserWithEmailAndPassword, 
-      signInWithEmailAndPassword,
-      signOut,
-      onAuthStateChanged 
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    <!-- Phần chính với nội dung giới thiệu -->
+    <main class="py-12 px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-5xl font-extrabold leading-tight mb-4">
+                    Nền tảng học tiếng Anh trực tuyến hiệu quả nhất
+                </h1>
+                <p class="text-xl leading-relaxed mb-6">
+                    Được thiết kế để giúp bạn học từ vựng, ngữ pháp và phát âm một cách tự nhiên và dễ dàng.
+                </p>
+                <div class="flex items-center space-x-4">
+                    <a href="../pages/login.html" class="bg-yellow-400 text-blue-900 font-bold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-500 transition duration-300">
+                        Bắt đầu ngay
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="./img/banner.jpg" alt="Hình ảnh minh họa" class="rounded-lg shadow-lg">
+            </div>
+        </div>
 
-    // Cấu hình Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyASEoE6TQkvWK1EtYfcAAdfOD3Guo874Ko",
-      authDomain: "jsi35-d177d.firebaseapp.com",
-      projectId: "jsi35-d177d",
-      storageBucket: "jsi35-d177d.appspot.com",
-      messagingSenderId: "73414069100",
-      appId: "1:73414069100:web:b80dbc1756a4dd46c74149",
-      measurementId: "G-30EVLV5LC2"
-    };
+        <!-- Phần tính năng nổi bật -->
+        <div class="bg-white text-blue-900 rounded-xl p-8 shadow-2xl max-w-7xl mx-auto mt-12">
+            <h2 class="text-4xl font-bold text-center mb-8">Tính năng nổi bật</h2>
+            <div class="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0 md:space-x-8">
+                <div class="text-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition duration-300">
+                    <img src="https://placehold.co/80x80/E0E7FF/000000?text=AI" alt="AI icon" class="mx-auto w-20 h-20 mb-4 rounded-full">
+                    <p class="text-2xl font-semibold">Gia sư AI</p>
+                </div>
+                <div class="text-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition duration-300">
+                    <img src="https://placehold.co/80x80/E0E7FF/000000?text=Course" alt="Course icon" class="mx-auto w-20 h-20 mb-4 rounded-full">
+                    <p class="text-2xl font-semibold">Khóa học phong phú</p>
+                </div>
+                <div class="text-center p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition duration-300">
+                    <img src="https://placehold.co/80x80/E0E7FF/000000?text=Community" alt="Community icon" class="mx-auto w-20 h-20 mb-4 rounded-full">
+                    <p class="text-2xl font-semibold">Cộng đồng sôi nổi</p>
+                </div>
+            </div>
+        </div>
 
-    // Khởi tạo Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+        <!-- Phần giải thích tính năng -->
+        <div class="mt-12 max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6">Bạn sẽ học được những gì</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Reading & Writing -->
+                <div class="bg-white text-blue-900 rounded-lg p-6 shadow-md flex items-center space-x-4">
+                    <img src="https://placehold.co/80x80/E0E7FF/000000?text=Book" alt="Book icon" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">Reading & Writing</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg class="h-6 w-6 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-xl">Reading</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-6 w-6 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-xl">Writing</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-    // Lấy phần tử UI
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const message = document.getElementById("message");
+                <!-- Listening & Speaking -->
+                <div class="bg-white text-blue-900 rounded-lg p-6 shadow-md flex items-center space-x-4">
+                    <img src="https://placehold.co/80x80/E0E7FF/000000?text=Mic" alt="Microphone icon" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-2">Listening & Speaking</h3>
+                        <ul class="space-y-2">
+                            <li class="flex items-center">
+                                <svg class="h-6 w-6 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-xl">Listening</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-6 w-6 text-yellow-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 111.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-xl">Speaking</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    // Hàm đăng ký
-    async function signup() {
-      try {
-        const userCredential = await createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-        message.textContent = "✅ Đăng ký thành công: " + userCredential.user.email;
-        message.className = "message";
-      } catch (error) {
-        message.textContent = "❌ Lỗi: " + error.message;
-        message.className = "error";
-      }
-    }
-
-    // Hàm đăng nhập
-    async function login() {
-      try {
-        const userCredential = await signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value);
-        message.textContent = "✅ Đăng nhập thành công: " + userCredential.user.email;
-        message.className = "message";
-      } catch (error) {
-        message.textContent = "❌ Lỗi: " + error.message;
-        message.className = "error";
-      }
-    }
-
-    // Theo dõi trạng thái đăng nhập
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("Đã đăng nhập:", user.email);
-      } else {
-        console.log("Chưa đăng nhập");
-      }
-    });
-
-    // Gắn hàm vào global để button gọi được
-    window.signup = signup;
-    window.login = login;
-  </script>
+    <!-- Phần giống chân trang -->
+    <footer class="relative z-10 p-6 text-center">
+        <div class="flex items-center justify-center space-x-4">
+            <img src="https://placehold.co/40x40/E0E7FF/000000?text=Star" alt="Star icon" class="w-10 h-10">
+            <div class="text-xl font-bold">Let's Build Success Together!</div>
+            <img src="https://placehold.co/40x40/E0E7FF/000000?text=Star" alt="Star icon" class="w-10 h-10">
+        </div>
+    </footer>
+    
 </body>
 </html>
