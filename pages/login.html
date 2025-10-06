@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ứng Dụng Đăng Ký / Đăng Nhập</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body class="bg-blue-50">
+    <header
+      id="my-nav"
+      class="header p-4 bg-blue-600 text-white flex justify-between"
+    >
+      <a href="../index.html" class="font-bold">Study For Future</a>
+    </header>
+    
+    <div class="main-container">
+      <section id="login-container" class="form-container">
+        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+          Đăng Nhập
+        </h2>
+        <form id="login-form">
+          <div>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="Email"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            />
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Mật khẩu"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+          </div>
+          <a
+            href="#"
+            id="forgot-password-link"
+            class="text-sm text-blue-600 hover:underline mt-2 inline-block"
+            >Quên mật khẩu?</a
+          >
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors mt-4"
+          >
+            Đăng Nhập
+          </button>
+          <div class="text-center mt-4 text-sm text-gray-600">
+            Bạn chưa có tài khoản?
+            <a
+              href="#"
+              id="show-signup-link"
+              class="text-blue-600 font-medium hover:underline"
+              >Đăng ký</a
+            >
+          </div>
+          <div class="relative flex items-center justify-center my-4">
+            <span class="absolute bg-white px-2 text-gray-400">Hoặc</span>
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+          <button
+            type="button"
+            id="google-login-btn"
+            class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FFC107"
+                d="M43.611 20.083H42V20H24v8h11.303c-1.619 4.604-5.466 7.234-10.741 7.234-6.429 0-11.666-5.237-11.666-11.667s5.237-11.667 11.666-11.667c3.161 0 5.952 1.302 7.962 3.424l5.378-5.378C39.467 5.795 31.902 2 24 2 11.849 2 2 11.849 2 24s9.849 22 22 22c11.085 0 20.334-8.082 21.722-18.514V28h-5.111z"
+              />
+              <path fill="#4CAF50" d="M6 24h6v6h8v-6h6v-8h-6v-6h-8v6h-6z" />
+            </svg>
+            <span>Đăng nhập với Google</span>
+          </button>
+        </form>
+        <p id="login-error-message" class="error-message text-center"></p>
+      </section>
+
+      <section id="signup-container" class="form-container hidden">
+        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">
+          Đăng Ký
+        </h2>
+        <form id="signup-form">
+          <div>
+            <input
+              type="email"
+              id="signup-email"
+              placeholder="Email"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            />
+            <p id="email-error" class="error-message"></p>
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="Tạo mật khẩu"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            />
+            <span class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+            <p id="password-error" class="error-message"></p>
+          </div>
+          <div class="input-group">
+            <input
+              type="password"
+              id="signup-confirm-password"
+              placeholder="Xác nhận mật khẩu"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <span
+              class="icon"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+            <p id="confirm-password-error" class="error-message"></p>
+          </div>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors mt-4"
+          >
+            Đăng Ký
+          </button>
+          <div class="text-center mt-4 text-sm text-gray-600">
+            Đã có tài khoản?
+            <a
+              href="#"
+              id="show-login-link"
+              class="text-blue-600 font-medium hover:underline"
+              >Đăng nhập</a
+            >
+          </div>
+          <div class="relative flex items-center justify-center my-4">
+            <span class="absolute bg-white px-2 text-gray-400">Hoặc</span>
+            <div class="w-full h-px bg-gray-300"></div>
+          </div>
+          <button
+            type="button"
+            id="google-signup-btn"
+            class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center space-x-2"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FFC107"
+                d="M43.611 20.083H42V20H24v8h11.303c-1.619 4.604-5.466 7.234-10.741 7.234-6.429 0-11.666-5.237-11.666-11.667s5.237-11.667 11.666-11.667c3.161 0 5.952 1.302 7.962 3.424l5.378-5.378C39.467 5.795 31.902 2 24 2 11.849 2 2 11.849 2 24s9.849 22 22 22c11.085 0 20.334-8.082 21.722-18.514V28h-5.111z"
+              />
+              <path fill="#4CAF50" d="M6 24h6v6h8v-6h6v-8h-6v-6h-8v6h-6z" />
+            </svg>
+            <span>Đăng ký với Google</span>
+          </button>
+        </form>
+        <p id="signup-error-message" class="error-message text-center"></p>
+      </section>
+    </div>
+
+    <script type="module" src="../js/login.js"></script>
+  </body>
+</html>

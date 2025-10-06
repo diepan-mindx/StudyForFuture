@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quản lý lớp học</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      input {
+        margin: 5px;
+        padding: 5px;
+      }
+      button {
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background: #f2f2f2;
+      }
+      #lessonSection {
+        margin-top: 30px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      id="my-nav"
+      class="header p-4 bg-blue-600 text-white flex justify-between"
+    >
+      <a href="../index.html" class="font-bold">Study For Future</a>
+    </header>
+
+    <h2>📚 Quản lý lớp học</h2>
+
+    <!-- Form đăng nhập / đăng ký -->
+    <div>
+      <input type="text" id="studentName" placeholder="Tên học sinh" />
+      <input type="text" id="studentId" placeholder="Mã số" />
+      <button onclick="registerStudent()">📝 Them hoc sinh</button>
+    </div>
+
+    <!-- Thông tin học sinh -->
+    <h3>👩‍🎓 Danh sách học sinh</h3>
+    <table id="studentsTable">
+      <thead>
+        <tr>
+          <th>Tên</th>
+          <th>Mã số</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Phần Lesson -->
+    <div id="lessonSection">
+      <h3>📖 Lesson</h3>
+      <p>
+        <b>Học sinh:</b> <span id="lessonStudentName"></span> -
+        <span id="lessonStudentId"></span>
+      </p>
+      <p><b>Tiến độ:</b> <span id="lessonProgress">0%</span></p>
+      <button onclick="updateProgress()">✅ Làm thêm bài</button>
+    </div>
+
+    <script src="./js/nav.js"></script>
+
+    <script type="module" src="../js/firebase_config.js"></script>
+  </body>
+</html>

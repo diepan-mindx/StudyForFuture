@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Tài Khoản</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../css/account.css" />
+  </head>
+  <body>
+    <header
+      id="my-nav"
+      class="header p-4 bg-blue-600 text-white flex justify-between w-100"
+    >
+      <a href="../index.html" class="font-bold">Study For Future</a>
+      <nav class="space-x-4">
+        <a href="../index.html">Giới Thiệu</a>
+        <a href="courses.html">Khóa Học</a>
+        <a href="account.html" class="font-bold underline">Tài Khoản</a>
+      </nav>
+    </header>
+
+    <main class="account-container w-100">
+      <h1 class="w-100 text-center p-4">Thông Tin Tài Khoản</h1>
+      <div id="profile-card" class="profile-card">
+        <img
+          id="user-avatar"
+          src="https://placehold.co/100x100/E9F4FF/007BFF?text=Avatar"
+          alt="User Avatar"
+          class="profile-avatar"
+        />
+        <h2 id="user-display-name">Tên Người Dùng</h2>
+        <div class="detail-group">
+          <label>Email:</label>
+          <span id="user-email">user@example.com</span>
+        </div>
+        <div class="detail-group">
+          <label>Mật Khẩu:</label>
+          <span>********</span>
+        </div>
+        <div class="action-buttons">
+          <button
+          id="logout-btn"
+            type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          >
+            Đăng xuất
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="../js/account.js"></script>
+  </body>
+</html>
